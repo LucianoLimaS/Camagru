@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    container_name: camagru_web
+    ports:
+      - "${WEB_PORT:-8000}:80"
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - DB_HOST=${DB_HOST:-mariadb}
+      - DB_DATABASE=${DB_DATABASE:-camagru}
+      - DB_USER=${DB_USER:-camagru_user}
+      - DB_PASSWORD=${DB_PASSWORD:-camagru_pass}
+    depends_on:
+      - mariadb
+    networks:
+      - camagru_network
+
+  mariadb:
+    image: mariadb:10.11
+    container_name: camagru_db
+    ports:
+      - "${DB_PORT:-33061}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-camagru_root_pass}
+      - MYSQL_DATABASE=${DB_DATABASE:-camagru}
+      - MYSQL_USER=${DB_USER:-camagru_user}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-camagru_pass}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - camagru_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: camagru_phpmyadmin
+    ports:
+      - "${PMA_PORT:-8085}:80"
+    environment:
+      - PMA_HOST=${DB_HOST:-mariadb}
+      - PMA_USER=root
+      - PMA_PASSWORD=${DB_ROOT_PASSWORD:-camagru_root_pass}
+    depends_on:
+      - mariadb
+    networks:
+      - camagru_network
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: camagru_mailpit
+    ports:
+      - "${MAILPIT_WEB_PORT:-8025}:8025"
+      - "${MAILPIT_SMTP_PORT:-1025}:1025"
+    networks:
+      - camagru_network
+
+volumes:
+  db_data:
+
+networks:
+  camagru_network:
+    driver: bridge
