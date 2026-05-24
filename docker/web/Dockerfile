@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql gd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+# Enable Apache mod_rewrite and AllowOverride All
+RUN a2enmod rewrite && \
+    sed -ri -e 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 # Configure msmtp (mail agent) to route to mailpit SMTP
 RUN echo "account default" > /etc/msmtprc && \
