@@ -1,94 +1,95 @@
-<div class="container">
-    <header>
-        <h1>Camagru</h1>
-        <p>Painel Administrativo e Status do Sistema ⚙️</p>
-    </header>
+<!-- Header Section -->
+<section class="mb-lg text-center md:text-left">
+    <h1 class="text-display-lg font-display-lg text-on-surface mb-xs">Painel Administrativo</h1>
+    <p class="text-body-lg font-body-lg text-on-surface-variant">Monitore o status da infraestrutura e execute testes de integração do servidor.</p>
+</section>
 
-    <!-- Status da Infraestrutura -->
-    <section class="card">
-        <h2 class="card-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            Status do Sistema
-        </h2>
-        <div class="status-grid">
-            <div class="status-item">
-                <span class="status-label">Servidor Web</span>
-                <span class="status-value">
-                    <span class="indicator success"></span>
-                    Apache / PHP <?= phpversion() ?>
-                </span>
-            </div>
-
-            <div class="status-item">
-                <span class="status-label">Banco de Dados</span>
-                <span class="status-value">
-                    <?php if ($db_connected): ?>
-                        <span class="indicator success"></span> Conectado
-                    <?php else: ?>
-                        <span class="indicator danger"></span> Desconectado
-                    <?php endif; ?>
-                </span>
-            </div>
-
-            <div class="status-item">
-                <span class="status-label">Biblioteca GD</span>
-                <span class="status-value">
-                    <?php if ($gd_loaded): ?>
-                        <span class="indicator success"></span> Ativa (<?= htmlspecialchars($gd_version) ?>)
-                    <?php else: ?>
-                        <span class="indicator danger"></span> Inativa
-                    <?php endif; ?>
-                </span>
-            </div>
+<!-- Status Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
+    <!-- Web Server Status -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-4 shadow-sm">
+        <span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Servidor Web</span>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+            <span class="text-body-md font-semibold">Apache / PHP <?= phpversion() ?></span>
         </div>
-    </section>
-
-    <!-- Testador de E-mails (Mailpit) -->
-    <section class="card">
-        <h2 class="card-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Teste de Envio de E-mails
-        </h2>
-        <form method="POST">
-            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.5;">
-                O Camagru precisa enviar e-mails para confirmação de conta e recuperação de senha. Use o botão abaixo para enviar um e-mail de teste direto deste container. Você poderá visualizá-lo abrindo o painel do Mailpit.
-            </p>
-            <button type="submit" name="send_email" class="btn">
-                Enviar E-mail de Teste
-            </button>
-        </form>
-
-        <?php if ($email_sent === true): ?>
-            <div class="alert success">
-                <strong>E-mail enviado!</strong> Verifique a caixa de entrada em seu <a href="http://localhost:8025" target="_blank" style="color: #6ee7b7; font-weight: 600; text-decoration: underline;">Mailpit Dashboard</a>.
-            </div>
-        <?php elseif ($email_sent === false): ?>
-            <div class="alert danger">
-                <strong>Erro ao enviar e-mail:</strong><br>
-                <?= htmlspecialchars($email_error) ?>
-            </div>
-        <?php endif; ?>
-    </section>
-
-    <!-- Atalhos Rápidos -->
-    <section class="card">
-        <h2 class="card-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-            Links de Acesso Rápido
-        </h2>
-        <div class="links-grid">
-            <a href="/" class="link-card">
-                <span class="title">Voltar para a Home</span>
-                <span class="url">Ir para a homepage pública</span>
-            </a>
-            <a href="http://localhost:8085" target="_blank" class="link-card">
-                <span class="title">phpMyAdmin (Banco)</span>
-                <span class="url">localhost:8085</span>
-            </a>
-            <a href="http://localhost:8025" target="_blank" class="link-card">
-                <span class="title">Mailpit Dashboard</span>
-                <span class="url">localhost:8025</span>
-            </a>
+    </div>
+    
+    <!-- Database Status -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-4 shadow-sm">
+        <span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Banco de Dados</span>
+        <div class="flex items-center gap-2">
+            <?php if ($db_connected): ?>
+                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                <span class="text-body-md font-semibold text-on-surface">MariaDB (Conectado)</span>
+            <?php else: ?>
+                <span class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_#ef4444]"></span>
+                <span class="text-body-md font-semibold text-error">Desconectado</span>
+            <?php endif; ?>
         </div>
-    </section>
-</div>
+    </div>
+    
+    <!-- GD Library Status -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col gap-4 shadow-sm">
+        <span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Biblioteca GD</span>
+        <div class="flex items-center gap-2">
+            <?php if ($gd_loaded): ?>
+                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                <span class="text-body-md font-semibold">Ativa (<?= htmlspecialchars($gd_version) ?>)</span>
+            <?php else: ?>
+                <span class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_#ef4444]"></span>
+                <span class="text-body-md font-semibold text-error">Inativa</span>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<!-- Mail Tester Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 mb-lg shadow-sm">
+    <div class="flex items-center gap-2 mb-4">
+        <span class="material-symbols-outlined text-primary text-[24px]">mail</span>
+        <h2 class="text-headline-md font-bold text-on-surface">Teste de Envio de E-mails</h2>
+    </div>
+    <p class="text-body-sm md:text-body-md text-on-surface-variant mb-6 max-w-2xl leading-relaxed">
+        O Camagru precisa enviar e-mails para validação de contas de usuário e recuperação de senhas. Use o formulário abaixo para disparar um e-mail de teste via MSMTP direto do container para o painel do Mailpit.
+    </p>
+    <form method="POST" action="/admin" class="flex flex-col gap-4 items-start">
+        <button type="submit" name="send_email" class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors duration-200 shadow-sm active:scale-95 transition-transform duration-150">
+            Enviar E-mail de Teste
+        </button>
+    </form>
+    
+    <?php if ($email_sent === true): ?>
+        <div class="mt-4 p-4 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-400 rounded-lg text-body-sm flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">check_circle</span>
+            <span><strong>E-mail enviado!</strong> Verifique a caixa de entrada no seu <a href="http://localhost:8025" target="_blank" class="underline font-bold hover:text-emerald-900 dark:hover:text-emerald-200">Mailpit Dashboard</a>.</span>
+        </div>
+    <?php elseif ($email_sent === false): ?>
+        <div class="mt-4 p-4 bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-400 rounded-lg text-body-sm flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">error</span>
+            <span><strong>Erro ao enviar e-mail:</strong> <?= htmlspecialchars($email_error) ?></span>
+        </div>
+    <?php endif; ?>
+</section>
+
+<!-- Quick Links Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 shadow-sm">
+    <div class="flex items-center gap-2 mb-6">
+        <span class="material-symbols-outlined text-primary text-[24px]">link</span>
+        <h2 class="text-headline-md font-bold text-on-surface">Atalhos de Desenvolvimento</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/" class="group flex flex-col p-4 border border-outline-variant rounded-xl hover:border-primary transition-colors duration-300 bg-surface-container-lowest">
+            <span class="text-label-md font-bold text-primary group-hover:underline">Voltar para a Home</span>
+            <span class="text-body-sm text-secondary mt-1">Ir para a galeria pública de fotos</span>
+        </a>
+        <a href="http://localhost:8085" target="_blank" class="group flex flex-col p-4 border border-outline-variant rounded-xl hover:border-primary transition-colors duration-300 bg-surface-container-lowest">
+            <span class="text-label-md font-bold text-primary group-hover:underline">phpMyAdmin</span>
+            <span class="text-body-sm text-secondary mt-1">Gerenciar tabelas do banco de dados (Porta 8085)</span>
+        </a>
+        <a href="http://localhost:8025" target="_blank" class="group flex flex-col p-4 border border-outline-variant rounded-xl hover:border-primary transition-colors duration-300 bg-surface-container-lowest">
+            <span class="text-label-md font-bold text-primary group-hover:underline">Mailpit Dashboard</span>
+            <span class="text-body-sm text-secondary mt-1">Ver a caixa de e-mails de teste (Porta 8025)</span>
+        </a>
+    </div>
+</section>

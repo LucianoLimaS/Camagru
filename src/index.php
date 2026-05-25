@@ -22,6 +22,8 @@ $router = new Core\Router();
 $router->add('GET', '/', 'HomeController@index');
 $router->add('GET', '/admin', 'AdminController@index');
 $router->add('POST', '/admin', 'AdminController@index');
+$router->add('GET', '/login', 'AuthController@login');
+$router->add('GET', '/register', 'AuthController@register');
 
 // Despacha a requisição HTTP para o respectivo Controller
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
