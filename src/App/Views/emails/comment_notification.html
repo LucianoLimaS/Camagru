@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Novo comentário em sua foto!</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8f9fa; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8f9fa; padding: 40px 20px; border-collapse: collapse;">
+        <tr>
+            <td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e1e3e4; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); border-collapse: collapse;">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="background-color: #f8f9fa; padding: 24px; border-bottom: 1px solid #e1e3e4;">
+                            <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #003c90; letter-spacing: -0.5px; font-family: 'Inter', Helvetica, Arial, sans-serif;">Camagru</h1>
+                        </td>
+                    </tr>
+                    <!-- Body Content -->
+                    <tr>
+                        <td align="center" style="padding: 40px 32px; text-align: center;">
+                            <!-- Icon/Illustration -->
+                            <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 24px; border-collapse: collapse; margin-left: auto; margin-right: auto;">
+                                <tr>
+                                    <td align="center" style="background-color: #d9e2ff; width: 80px; height: 80px; border-radius: 40px; text-align: center; vertical-align: middle;">
+                                        <span style="font-size: 36px; line-height: 80px; color: #003c90; font-family: Arial, sans-serif;">💬</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <h2 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600; color: #191c1d; line-height: 32px; font-family: 'Inter', Helvetica, Arial, sans-serif;">Olá, {{owner_username}}!</h2>
+                            
+                            <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 24px; color: #434653; max-width: 440px; font-family: 'Inter', Helvetica, Arial, sans-serif; margin-left: auto; margin-right: auto;">
+                                Alguém acabou de deixar um comentário em uma de suas fotos na galeria Camagru.
+                            </p>
+                            
+                            <!-- Comment Snippet Card -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 440px; background-color: #f3f4f5; border: 1px solid #e1e3e4; border-radius: 8px; margin-bottom: 24px; border-collapse: collapse; margin-left: auto; margin-right: auto; text-align: left;">
+                                <tr>
+                                    <td style="padding: 16px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr>
+                                                <!-- Avatar Cell -->
+                                                <td valign="middle" style="width: 40px;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                                                        <tr>
+                                                            <td align="center" style="background-color: #dce2f3; width: 32px; height: 32px; border-radius: 16px; font-weight: bold; color: #151c27; font-family: 'Inter', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 32px; vertical-align: middle;">
+                                                                👤
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <!-- Comment Text Cell -->
+                                                <td valign="middle" style="padding-left: 12px; font-family: 'Inter', Helvetica, Arial, sans-serif;">
+                                                    <p style="margin: 0 0 2px 0; font-size: 14px; font-weight: 600; color: #191c1d;">@{{commenter_username}}</p>
+                                                    <p style="margin: 0; font-size: 14px; line-height: 18px; color: #434653; font-style: italic;">
+                                                        "{{comment_text}}"
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- CTA Button (Pill-shaped) -->
+                            <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 32px; border-collapse: collapse; margin-left: auto; margin-right: auto;">
+                                <tr>
+                                    <td align="center" style="background-color: #003c90; border-radius: 24px; padding: 14px 32px;">
+                                        <a href="{{comment_link}}" target="_blank" style="font-size: 14px; font-weight: 600; color: #ffffff; text-decoration: none; font-family: 'Inter', Helvetica, Arial, sans-serif; display: block;">
+                                            Ver Comentário
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Image Context Hint -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 32px; border-collapse: collapse; margin-left: auto; margin-right: auto;">
+                                <tr>
+                                    <td align="center">
+                                        <img alt="Foto Comentada" src="{{image_path}}" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid #e1e3e4; display: block; object-fit: cover;" />
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Settings Mute Note -->
+                            <p style="margin: 0; padding-top: 24px; border-top: 1px solid #e1e3e4; font-size: 12px; line-height: 18px; color: #585f6c; text-align: center; font-family: 'Inter', Helvetica, Arial, sans-serif;">
+                                Não quer receber estes e-mails? Você pode desativar as notificações de comentários nas suas 
+                                <a href="{{profile_settings_link}}" target="_blank" style="color: #003c90; text-decoration: underline;">configurações de perfil</a>.
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center" style="background-color: #f3f4f5; border-top: 1px solid #e1e3e4; padding: 32px 24px; text-align: center;">
+                            <span style="font-size: 14px; font-weight: 700; color: #191c1d; display: block; margin-bottom: 16px; font-family: 'Inter', Helvetica, Arial, sans-serif;">Camagru</span>
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin-bottom: 16px; border-collapse: collapse;">
+                                <tr>
+                                    <td><a href="#" style="font-size: 12px; color: #434653; text-decoration: none; font-family: 'Inter', Helvetica, Arial, sans-serif; margin: 0 8px;">Suporte</a></td>
+                                    <td style="font-size: 12px; color: #c3c6d5; font-family: Arial, sans-serif;">•</td>
+                                    <td><a href="#" style="font-size: 12px; color: #434653; text-decoration: none; font-family: 'Inter', Helvetica, Arial, sans-serif; margin: 0 8px;">Privacidade</a></td>
+                                    <td style="font-size: 12px; color: #c3c6d5; font-family: Arial, sans-serif;">•</td>
+                                    <td><a href="#" style="font-size: 12px; color: #434653; text-decoration: none; font-family: 'Inter', Helvetica, Arial, sans-serif; margin: 0 8px;">Termos</a></td>
+                                </tr>
+                            </table>
+                            <p style="margin: 0; font-size: 12px; color: #585f6c; font-family: 'Inter', Helvetica, Arial, sans-serif;">
+                                © 2024 Camagru. Experiência de Galeria Minimalista.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
