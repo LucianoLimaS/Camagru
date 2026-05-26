@@ -25,11 +25,31 @@ class Database {
 
         try {
             $this->connection = new PDO($dsn, $user, $pass, $options);
+            $this->initializeDatabase($db);
         } catch (PDOException $e) {
             // Instancia o ErrorController e renderiza a view de erro 500 com o layout global
             $controller = new \App\Controllers\ErrorController();
             $controller->show(500, 'Não foi possível conectar ao banco de dados no momento. Por favor, tente novamente mais tarde.');
             exit();
+        }
+    }
+
+    private function initializeDatabase($dbName) {
+        $stmt = $this->connection->prepare("
+            SELECT COUNT(*) 
+            FROM information_schema.tables 
+            WHERE table_schema = :dbName 
+              AND table_name = 'users'
+        ");
+        $stmt->execute(['dbName' => $dbName]);
+        $tableExists = (int)$stmt->fetchColumn() > 0;
+
+        if (!$tableExists) {
+            $sqlFile = __DIR__ . '/../config/setup.sql';
+            if (file_exists($sqlFile)) {
+                $sql = file_get_contents($sqlFile);
+                $this->connection->exec($sql);
+            }
         }
     }
 

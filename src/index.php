@@ -15,6 +15,9 @@ Core\Autoloader::register();
 // Carrega o arquivo .env do diretório raiz
 Core\Env::load(__DIR__ . '/../.env');
 
+// Inicializa o banco de dados (e executa migrações se necessário)
+Core\Database::getInstance();
+
 // Inicializa o roteador customizado
 $router = new Core\Router();
 
