@@ -167,6 +167,8 @@ Camagru/
 │       │   ├── AdminController.php
 │       │   ├── HomeController.php
 │       │   └── ErrorController.php
+│       ├── Models/
+│       │   └── .gitkeep
 │       └── Views/
 │           ├── layout.php
 │           ├── admin/

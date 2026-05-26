@@ -36,6 +36,20 @@ class Router {
         if ($path !== '/' && substr($path, -1) === '/') {
             $path = rtrim($path, '/');
         }
+
+        // Verifica autenticação global: se não logado, redireciona para /login
+        // Exceções: rota home ('/'), rota admin (e suas sub-rotas) e as rotas de auth (/login e /register)
+        $isLoggedIn = !empty($_SESSION['user']) || !empty($_SESSION['user_id']);
+        if (!$isLoggedIn) {
+            $isAdminRoute = ($path === '/admin' || strpos($path, '/admin/') === 0);
+            $isAuthRoute = ($path === '/login' || $path === '/register');
+            $isHomeRoute = ($path === '/');
+
+            if (!$isAdminRoute && !$isAuthRoute && !$isHomeRoute) {
+                header('Location: /login');
+                exit();
+            }
+        }
         
         $method = strtoupper($requestMethod);
 
