@@ -1,0 +1,53 @@
+/* Material Symbols Outlined settings */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.material-symbols-outlined.fill-icon {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Form Input Custom Styles */
+.form-input {
+    border: 1px solid #D1D5DB;
+    transition: all 0.2s ease-in-out;
+}
+.form-input:focus {
+    border-color: #003c90;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 60, 144, 0.1);
+}
+
+/* Password Strength Indicator */
+.strength-bar {
+    height: 4px;
+    width: 100%;
+    background-color: #E5E7EB;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+.strength-weak {
+    background-color: #EF4444;
+    width: 33%;
+}
+.strength-medium {
+    background-color: #F59E0B;
+    width: 66%;
+}
+.strength-strong {
+    background-color: #10B981;
+    width: 100%;
+}
+
+/* Glass Panel Effect */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid #E5E7EB;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}

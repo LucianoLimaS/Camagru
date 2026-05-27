@@ -21,7 +21,7 @@ class Controller {
         }
         $content = ob_get_clean();
 
-        $layoutFile = __DIR__ . '/../App/Views/' . $layout . '.php';
+        $layoutFile = __DIR__ . '/../App/Views/layouts/' . $layout . '.php';
         if (file_exists($layoutFile)) {
             require $layoutFile;
         } else {
