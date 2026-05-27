@@ -160,9 +160,9 @@
         </div>
         
         <!-- Right Side: Forms Area -->
-        <div class="p-margin-desktop md:p-lg flex flex-col justify-center bg-surface-container-lowest w-full relative min-h-[600px]">
+        <div class="px-margin-mobile md:px-margin-desktop pt-24 pb-margin-mobile md:pb-margin-desktop flex flex-col justify-start bg-surface-container-lowest w-full relative min-h-[600px]">
             <?php if (!empty($_SESSION['flash'])): ?>
-                <div class="mb-md p-sm rounded-lg flex items-center gap-sm <?= $_SESSION['flash']['type'] === 'success' ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-red-100 text-red-800 border border-red-200' ?>">
+                <div id="authAlertContainer" class="mb-md p-sm rounded-lg flex items-center gap-sm <?= $_SESSION['flash']['type'] === 'success' ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-red-100 text-red-800 border border-red-200' ?>">
                     <span class="material-symbols-outlined"><?= $_SESSION['flash']['type'] === 'success' ? 'check_circle' : 'error' ?></span>
                     <span class="text-body-sm font-medium"><?= htmlspecialchars($_SESSION['flash']['message']) ?></span>
                 </div>

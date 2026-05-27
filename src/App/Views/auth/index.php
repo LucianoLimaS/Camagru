@@ -40,7 +40,7 @@
 </div>
 
 <!-- Sign Up Form (Initially Hidden) -->
-<div class="w-full max-w-[400px] mx-auto hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-margin-desktop md:px-lg" id="signupFormContainer">
+<div class="w-full max-w-[400px] mx-auto hidden transition-all duration-500 transform translate-x-0 opacity-100" id="signupFormContainer">
     <div class="mb-lg">
         <h2 class="font-headline-md text-headline-md text-on-background mb-xs">Criar Conta</h2>
         <p class="font-body-sm text-body-sm text-on-surface-variant">Junte-se ao Camagru para compartilhar suas fotos.</p>
@@ -107,10 +107,7 @@
             signupForm.classList.remove('block');
             
             loginForm.classList.remove('hidden');
-            loginForm.style.position = 'relative';
-            loginForm.style.transform = 'none';
-            loginForm.style.left = 'auto';
-            loginForm.style.top = 'auto';
+            loginForm.classList.add('block');
             
             if (updateUrl) {
                 history.pushState(null, '', '/login');
@@ -123,13 +120,10 @@
             loginBtn.className = 'px-sm py-xs rounded-full font-label-md text-label-md text-secondary hover:text-primary transition-all';
             
             loginForm.classList.add('hidden');
+            loginForm.classList.remove('block');
             
             signupForm.classList.remove('hidden');
             signupForm.classList.add('block');
-            signupForm.style.position = 'absolute';
-            signupForm.style.top = '50%';
-            signupForm.style.left = '50%';
-            signupForm.style.transform = 'translate(-50%, -50%)';
             
             if (updateUrl) {
                 history.pushState(null, '', '/register');
@@ -137,8 +131,20 @@
             }
         }
 
-        loginBtn.addEventListener('click', () => showLogin(true));
-        signupBtn.addEventListener('click', () => showSignup(true));
+        loginBtn.addEventListener('click', () => {
+            showLogin(true);
+            const alertContainer = document.getElementById('authAlertContainer');
+            if (alertContainer) {
+                alertContainer.classList.add('hidden');
+            }
+        });
+        signupBtn.addEventListener('click', () => {
+            showSignup(true);
+            const alertContainer = document.getElementById('authAlertContainer');
+            if (alertContainer) {
+                alertContainer.classList.add('hidden');
+            }
+        });
 
         // Define o estado inicial com base na URL
         <?php if ($action === 'register'): ?>
