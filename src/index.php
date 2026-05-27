@@ -20,6 +20,9 @@ Core\Autoloader::register();
 // Carrega o arquivo .env do diretório raiz
 Core\Env::load(__DIR__ . '/../.env');
 
+// Define a constante global de desenvolvimento (DEV_MODE)
+define('DEV_MODE', filter_var(getenv('DEV_MODE') ?: 'true', FILTER_VALIDATE_BOOLEAN));
+
 // Inicializa o banco de dados (e executa migrações se necessário)
 Core\Database::getInstance();
 

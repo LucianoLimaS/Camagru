@@ -87,3 +87,21 @@ O e-mail será interceptado e enviado para o **Mailpit** (rodando no container `
 ## 🎨 Extensão GD (Manipulação de Imagens)
 
 O container `web` já vem com a extensão **GD** instalada por padrão. Ela é fundamental para os requisitos do Camagru que envolvem a manipulação de imagens pelo lado do servidor (como mesclar a foto capturada da câmera com as molduras/stickers).
+
+---
+
+## ⚙️ Configuração de Desenvolvimento e Documentação
+
+### Modo de Desenvolvimento (`DEV_MODE`)
+No arquivo `.env`, você pode configurar a variável `DEV_MODE`:
+- `DEV_MODE=true` (padrão): Indica que o sistema está em modo de desenvolvimento. Isso realiza o **bypass (desativação)** das políticas estritas de força de senha para facilitar a criação rápida de usuários de teste na plataforma.
+- `DEV_MODE=false`: Ativa a validação rígida de força de senha no cadastro e redefinição (mínimo de 8 caracteres, maiúscula, minúscula, número e caractere especial).
+
+### 📚 Documentação do Projeto
+Os arquivos explicando detalhadamente a arquitetura e o funcionamento de cada módulo do projeto estão localizados na pasta [documentação](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/):
+- [01 - mvc.md](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/01%20-%20mvc.md) - Explicação detalhada da arquitetura MVC customizada do projeto.
+- [02 - Estrutura de múltiplos layouts.md](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/02%20-%20Estrutura%20de%20m%C3%BAltiplos%20layouts.md) - Como a renderização usa diferentes layouts dinamicamente.
+- [03 - Modelagem do Banco de Dados.md](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/03%20-%20Modelagem%20do%20Banco%20de%20Dados.md) - Estrutura relacional do banco de dados e diagramas.
+- [04 - Models e ORM.md](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/04%20-%20Models%20e%20ORM.md) - O funcionamento simplificado do ORM customizado.
+- [05 - Envio de Emails.md](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/05%20-%20Envio%20de%20Emails.md) - Configuração do SMTP e capturas no Mailpit.
+- [06 - Autenticação.md](file:///e:/42%20rio/Camagru/documenta%C3%A7%C3%A3o/06%20-%20Autentica%C3%A7%C3%A3o.md) - Fluxo de autenticação, CSRF e controle de recuperação de senhas.

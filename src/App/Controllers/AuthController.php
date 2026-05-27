@@ -63,12 +63,12 @@ class AuthController extends Controller {
             $this->redirect('/register');
         }
 
-        // 4. Validação da força da senha
-        if (strlen($password) < 8 || 
+        // 4. Validação da força da senha (ignorada em DEV_MODE)
+        if (!DEV_MODE && (strlen($password) < 8 || 
             !preg_match('/[A-Z]/', $password) || 
             !preg_match('/[a-z]/', $password) || 
             !preg_match('/[0-9]/', $password) || 
-            !preg_match('/[^a-zA-Z0-9]/', $password)
+            !preg_match('/[^a-zA-Z0-9]/', $password))
         ) {
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'A senha deve conter no mínimo 8 caracteres, incluindo pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial.'];
             $this->redirect('/register');
@@ -313,12 +313,12 @@ class AuthController extends Controller {
             $this->redirect('/reset-password?token=' . urlencode($token));
         }
 
-        // Validação da força da nova senha
-        if (strlen($password) < 8 || 
+        // Validação da força da nova senha (ignorada em DEV_MODE)
+        if (!DEV_MODE && (strlen($password) < 8 || 
             !preg_match('/[A-Z]/', $password) || 
             !preg_match('/[a-z]/', $password) || 
             !preg_match('/[0-9]/', $password) || 
-            !preg_match('/[^a-zA-Z0-9]/', $password)
+            !preg_match('/[^a-zA-Z0-9]/', $password))
         ) {
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'A nova senha não atende aos critérios de complexidade mínima de segurança.'];
             $this->redirect('/reset-password?token=' . urlencode($token));
