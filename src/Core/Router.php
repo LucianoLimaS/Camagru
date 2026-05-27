@@ -42,7 +42,7 @@ class Router {
         $isLoggedIn = !empty($_SESSION['user']) || !empty($_SESSION['user_id']);
         if (!$isLoggedIn) {
             $isAdminRoute = ($path === '/admin' || strpos($path, '/admin/') === 0);
-            $isAuthRoute = ($path === '/login' || $path === '/register');
+            $isAuthRoute = ($path === '/login' || $path === '/register' || $path === '/confirm' || $path === '/forgot-password' || $path === '/reset-password');
             $isHomeRoute = ($path === '/');
 
             if (!$isAdminRoute && !$isAuthRoute && !$isHomeRoute) {

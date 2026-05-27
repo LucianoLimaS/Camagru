@@ -50,6 +50,25 @@ class Database {
                 $sql = file_get_contents($sqlFile);
                 $this->connection->exec($sql);
             }
+        } else {
+            // Check if reset_token column exists, if not, add it
+            $stmt = $this->connection->prepare("
+                SELECT COUNT(*) 
+                FROM information_schema.columns 
+                WHERE table_schema = :dbName 
+                  AND table_name = 'users' 
+                  AND column_name = 'reset_token'
+            ");
+            $stmt->execute(['dbName' => $dbName]);
+            $columnExists = (int)$stmt->fetchColumn() > 0;
+
+            if (!$columnExists) {
+                $this->connection->exec("
+                    ALTER TABLE `users` 
+                    ADD COLUMN `reset_token` VARCHAR(255) DEFAULT NULL,
+                    ADD COLUMN `reset_expires` DATETIME DEFAULT NULL
+                ");
+            }
         }
     }
 

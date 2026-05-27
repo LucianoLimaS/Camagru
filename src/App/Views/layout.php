@@ -120,21 +120,33 @@
             <div class="flex items-center gap-md">
                 <a href="/" class="text-headline-md font-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed-dim cursor-pointer">Camagru</a>
                 <nav class="hidden md:flex gap-sm ml-md">
-                    <a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 active:scale-95 transition-transform duration-150" href="/">Gallery</a>
+                    <a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 active:scale-95 transition-transform duration-150" href="/">Galeria</a>
                     <a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 active:scale-95 transition-transform duration-150" href="/editor">Editor</a>
                     <a class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 active:scale-95 transition-transform duration-150" href="/admin">Admin</a>
                 </nav>
             </div>
             <div class="flex items-center gap-sm">
-                <!-- Autenticação Buttons for Public Page -->
-                <a href="/login" class="bg-transparent text-primary border border-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors duration-200 hidden md:block text-center decoration-none">Entrar</a>
-                <a href="/register" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-fixed-dim transition-colors duration-200 text-center decoration-none">Cadastrar-se</a>
+                <?php if (!empty($_SESSION['user_id'])): ?>
+                    <span class="text-body-sm font-medium text-secondary hidden md:inline">Olá, <strong class="text-primary"><?= htmlspecialchars($_SESSION['username']) ?></strong></span>
+                    <a href="/logout" class="bg-transparent text-error border border-error px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-error-container hover:text-on-error-container transition-colors duration-200 text-center decoration-none">Sair</a>
+                <?php else: ?>
+                    <!-- Autenticação Buttons for Public Page -->
+                    <a href="/login" class="bg-transparent text-primary border border-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors duration-200 hidden md:block text-center decoration-none">Entrar</a>
+                    <a href="/register" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary-fixed-dim transition-colors duration-200 text-center decoration-none">Cadastrar-se</a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
-
+ 
     <!-- Main Content wrapper -->
     <main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg">
+        <?php if (!empty($_SESSION['flash'])): ?>
+            <div class="mb-md p-sm rounded-lg flex items-center gap-sm <?= $_SESSION['flash']['type'] === 'success' ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-red-100 text-red-800 border border-red-200' ?>">
+                <span class="material-symbols-outlined"><?= $_SESSION['flash']['type'] === 'success' ? 'check_circle' : 'error' ?></span>
+                <span class="text-body-md font-medium"><?= htmlspecialchars($_SESSION['flash']['message']) ?></span>
+            </div>
+            <?php unset($_SESSION['flash']); ?>
+        <?php endif; ?>
         <?= $content ?>
     </main>
 
@@ -143,12 +155,12 @@
         <div class="flex flex-col md:flex-row justify-between items-center w-full py-lg px-margin-desktop max-w-7xl mx-auto space-y-md md:space-y-0">
             <span class="text-label-md font-label-md font-bold text-primary dark:text-primary-fixed-dim">Camagru</span>
             <div class="flex flex-wrap justify-center gap-md">
-                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
-                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
-                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Help Center</a>
-                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Contact</a>
+                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Termos de Serviço</a>
+                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Política de Privacidade</a>
+                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Central de Ajuda</a>
+                <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Contato</a>
             </div>
-            <span class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim">© 2024 Camagru Platform. All rights reserved.</span>
+            <span class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim">© 2024 Plataforma Camagru. Todos os direitos reservados.</span>
         </div>
     </footer>
 </body>

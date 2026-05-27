@@ -154,13 +154,20 @@
         <div class="hidden md:block relative bg-surface-variant w-full h-full min-h-[600px]">
             <img alt="Photography Setup" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAulQpuDr-23iqhnV9hO4UWKjv0gdOtUYwH7OBPv9MGmaQ5R7bK4b41oKmAzS2d3C9Q-D90eMya1hFHecAAfYdNnMnL7Uwo236H1sp2Oy2fNruJXx0_AmKAW5bfX8N-TCQs1713QqlyuTi3zK1NOcIzz-Ksmpl5w5nF8mX7LSeyBN18ofdFzP7imxHlitGm-mCSj32PHWTWE-kG--KzJyKgAkm4ILq5RGvVpZ5SQ16NmN5bwgb35mht6mSIJcfb_erjYbULOg_YORU"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-lg">
-                <h2 class="font-headline-lg text-headline-lg text-white mb-sm">Capture. Edit. Share.</h2>
-                <p class="font-body-lg text-body-lg text-white/80">Join the Camagru community and elevate your visual storytelling.</p>
+                <h2 class="font-headline-lg text-headline-lg text-white mb-sm">Capture. Edite. Compartilhe.</h2>
+                <p class="font-body-lg text-body-lg text-white/80">Junte-se à comunidade Camagru e eleve a sua narrativa visual.</p>
             </div>
         </div>
         
         <!-- Right Side: Forms Area -->
         <div class="p-margin-desktop md:p-lg flex flex-col justify-center bg-surface-container-lowest w-full relative min-h-[600px]">
+            <?php if (!empty($_SESSION['flash'])): ?>
+                <div class="mb-md p-sm rounded-lg flex items-center gap-sm <?= $_SESSION['flash']['type'] === 'success' ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-red-100 text-red-800 border border-red-200' ?>">
+                    <span class="material-symbols-outlined"><?= $_SESSION['flash']['type'] === 'success' ? 'check_circle' : 'error' ?></span>
+                    <span class="text-body-sm font-medium"><?= htmlspecialchars($_SESSION['flash']['message']) ?></span>
+                </div>
+                <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
             <?= $content ?>
         </div>
     </div>
@@ -172,13 +179,13 @@
             Camagru
         </div>
         <div class="flex flex-wrap justify-center gap-md">
-            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
-            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
-            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Help Center</a>
-            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Contact</a>
+            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Termos de Serviço</a>
+            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Política de Privacidade</a>
+            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Central de Ajuda</a>
+            <a class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Contato</a>
         </div>
         <div class="text-body-sm font-body-sm text-secondary dark:text-secondary-fixed-dim opacity-80">
-            © 2024 Camagru Platform. All rights reserved.
+            © 2024 Plataforma Camagru. Todos os direitos reservados.
         </div>
     </div>
 </footer>
